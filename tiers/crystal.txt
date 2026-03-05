@@ -1,28 +1,23 @@
 [CRYSTAL]
 HT1
-Karmaa3429
+
 
 LT1
-chubbsge
-Twohandsrevy
+
 
 HT2
-DarkNessCIA
-ddgwap
+
 
 LT2
-2slemon
-Beezy
+
 
 HT3
-VOP121
-luvsyawn
-Tirth1234__
+sussytech
+WhitebutterYT
+BOT2ISBACK
 
 LT3
-sussytech
-YeelerYee21
-Lariixd
+nss200787
 
 HT4
 ClownPierce434
