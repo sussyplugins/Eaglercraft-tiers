@@ -1,23 +1,21 @@
 [NETHPOT]
 HT1
-ElectricBrick
+
 LT1
 
 HT2
 
 LT2
-Karmaa3429
+
 HT3
-DarkNessCIA
 
 LT3
-Sussytech
-ClownPierce434
+TheFirstOwl
 
 HT4
-StormKing_
 
 LT4
+sussytech
 
 HT5
 
