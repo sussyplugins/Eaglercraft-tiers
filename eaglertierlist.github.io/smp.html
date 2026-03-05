@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crystal Tier List</title>
+    <link rel="stylesheet" href="landing.css">
+    <link rel="stylesheet" href="tiers.css">
+
+</head>
+<body>
+    <div class="header">
+        <img src="eaglercraft-tiers.png" alt="Eaglercraft Tiers" class="eaglercraft-image">
+
+        <button class="discord-button" onclick="window.location.href='https://discord.gg/97DehzwxF9'">
+            <img src="images/discord.svg" alt="Discord" width="64" height="64">
+            <h3 class="discord-text">Discord</h1>
+        </button>
+    </div>
+    <div class="container">
+        <div id="buttons"></div>
+        <div class="tier-container" id="leaderboard"></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tierlists = ['OVERALL', 'CRYSTAL', 'NETHPOT', 'SWORD', 'MACE', 'SMP', 'AXE', 'UHC'];
+            const buttonsContainer = document.getElementById('buttons');
+            const tierListElement = document.getElementById('leaderboard');
+
+            tierlists.forEach(tier => {
+                const button = document.createElement('button');
+                button.className = 'button';
+                
+                if (tier.toLowerCase() === 'smp') {
+                    button.className += ' active';
+                }
+                
+                const img = document.createElement('img');
+                img.src = `images/${tier.toLowerCase()}.svg`;
+                img.alt = tier;
+                img.style.width = '32px';
+                img.style.height = '32px';
+                
+                button.appendChild(img);
+                button.appendChild(document.createTextNode(tier));
+                
+                if (tier === 'OVERALL') {
+                    button.onclick = () => window.location.href = 'index.html';
+                } else {
+                    button.onclick = () => window.location.href = `${tier.toLowerCase()}.html`;
+                }
+                buttonsContainer.appendChild(button);
+            });
+
+            fetch('tiers/smp.txt')
+                .then(response => response.text())
+                .then(data => {
+                    const crystalMatch = data.match(/\[smp\]([\s\S]*?)(?=\[|$)/i);
+                    if (!crystalMatch) {
+                        processTierData(data);
+                    } else {
+                        processTierData(crystalMatch[1].trim());
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading tier data:', error);
+                    tierListElement.innerHTML = '<p style="color: red;">Error loading tier data. Please check console for details.</p>';
+                });
+
+            function processTierData(data) {
+                const tiers = data.split('\n\n');
+                const tierGroups = {
+                    '1': [],
+                    '2': [],
+                    '3': [],
+                    '4': [],
+                    '5': []
+                };
+
+                tiers.forEach(tier => {
+                    const lines = tier.trim().split('\n');
+                    const tierName = lines[0].trim();
+                    const players = lines.slice(1).map(line => line.trim()).filter(line => line);
+                    const level = tierName.match(/\d/)[0];
+                    if (level && players.length > 0) {
+                        players.forEach(player => {
+                            tierGroups[level].push({
+                                name: player,
+                                isHigh: tierName.startsWith('HT')
+                            });
+                        });
+                    }
+                });
+
+                for (let i = 5; i >= 1; i--) {
+                    const tierElement = document.createElement('div');
+                    tierElement.className = `tier tier-${i}`;
+                    const headerElement = document.createElement('div');
+                    headerElement.className = 'tier-header';
+                    headerElement.textContent = `Tier ${i}`;
+                    tierElement.appendChild(headerElement);
+
+                    const playersList = document.createElement('div');
+                    playersList.className = 'players-list';
+
+                    tierGroups[i].forEach(player => {
+                        const playerElement = document.createElement('div');
+                        playerElement.className = `player ${player.isHigh ? 'high-tier' : 'low-tier'}`;
+                        playerElement.textContent = player.name;
+                        playersList.appendChild(playerElement);
+                    });
+
+                    tierElement.appendChild(playersList);
+                    tierListElement.appendChild(tierElement);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+command /settier <player> <text>:
+    permission: skript.settier
+    trigger:
+        if arg-2 is "HT1":
+            set {tier.%arg-1%} to "HT1"
+            execute console command "lp user %arg-1% parent set HT1"
+            send "&aYou have set %arg-1%'s tier to HT1"
+        else if arg-2 is "LT1":
+            set {tier.%arg-1%} to "LT1"
+            execute console command "lp user %arg-1% parent set LT1"
+            send "&aYou have set %arg-1%'s tier to LT1"
+        else if arg-2 is "HT2":
+            set {tier.%arg-1%} to "HT2"
+            execute console command "lp user %arg-1% parent set HT2"
+            send "&aYou have set %arg-1%'s tier to HT2"
+        else if arg-2 is "LT2":
+            set {tier.%arg-1%} to "LT2"
+            execute console command "lp user %arg-1% parent set LT2"
+            send "&aYou have set %arg-1%'s tier to LT2"
+        else if arg-2 is "HT3":
+            set {tier.%arg-1%} to "HT3"
+            execute console command "lp user %arg-1% parent set HT3"
+            send "&aYou have set %arg-1%'s tier to HT3"
+        else if arg-2 is "LT3":
+            set {tier.%arg-1%} to "LT3"
+            execute console command "lp user %arg-1% parent set LT3"
+            send "&aYou have set %arg-1%'s tier to LT3"
+        else if arg-2 is "HT4":
+            set {tier.%arg-1%} to "HT4"
+            execute console command "lp user %arg-1% parent set HT4"
+            send "&aYou have set %arg-1%'s tier to HT4"
+        else if arg-2 is "LT4":
+            set {tier.%arg-1%} to "LT4"
+            execute console command "lp user %arg-1% parent set LT4"
+            send "&aYou have set %arg-1%'s tier to LT4"
+        else if arg-2 is "HT5":
+            set {tier.%arg-1%} to "HT5"
+            execute console command "lp user %arg-1% parent set HT5"
+            send "&aYou have set %arg-1%'s tier to HT5"
+        else if arg-2 is "LT5":
+            set {tier.%arg-1%} to "LT5"
+            execute console command "lp user %arg-1% parent set LT5"
+            send "&aYou have set %arg-1%'s tier to LT5"
+        else:
+            send "&cInvalid tier number"
+
+command /checktier [<player>]:
+    trigger:
+        if arg-1 is set:
+            if {tier.%arg-1%} is set:
+                send "&a%arg-1%'s current tier is %{tier.%arg-1%}%"
+            else:
+                send "&c%arg-1% is not tiered yet."
+        else:
+            if {tier.%player%} is set:
+                send "&aYour current tier is %{tier.%player%}%"
+            else:
+                send "&cYou are not tiered yet."

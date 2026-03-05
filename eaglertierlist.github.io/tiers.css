@@ -1,0 +1,170 @@
+:root {
+    --primary-bg: #10161d;
+    --secondary-bg: #121822;
+    --surface-1: #141a23;
+    --text-primary: #ffffff;
+    --text-secondary: #9fb0c3;
+    --text-muted: #393f49;
+    --tier-high: #263244;
+    --tier-hover-high: #3e4f68;
+    --gold: #41361b;
+    --silver: #343843;
+    --bronze: #352620;
+}
+
+.tier-list {
+    display: flex;
+    flex-direction: row; 
+    gap: 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem 2rem;
+}
+
+.tier {
+    background-color: var(--surface-1);
+    min-width: 200px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+    padding: 5px;
+}
+
+.tier.tier-1 { order: 1; }
+.tier.tier-2 { order: 2; }
+.tier.tier-3 { order: 3; }
+.tier.tier-4 { order: 4; }
+.tier.tier-5 { order: 5; }
+
+.tier:hover {
+    transform: translateY(-2px);
+}
+
+.tier .tier-header {
+    width: 100%;  
+    padding: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    background-color: var(--tier-high);
+    color: var(--text-primary);
+    display: flex;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+}
+
+.tier {
+    justify-content: flex-start;
+    float: left;
+}
+
+.tier ul {
+    list-style: none;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.tier li {
+    background-color: var(--tier-high);
+    padding: 0.5rem 1rem;
+    transition: background-color 0.2s;
+    text-align: center;
+}
+
+.tier li:hover {
+    background-color: var(--tier-hover-high);
+}
+
+.tier-container {
+    display: flex;
+    margin: 0 auto;
+}
+
+#leaderboard {
+    width: 2500px;
+    padding: 30px;
+    padding-right: 1020px;
+}
+
+@media (max-width: 1100px) {
+    .tier-list {
+        display: grid;
+
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        padding: 0 1rem 2rem;
+        overflow-x: visible;
+    }
+
+    .tier .tier-header {
+        font-size: 1.1rem;
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .tier .tier-header {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+}
+
+.players-list .player.low-tier {
+    background-color: var(--low-tier-color, #161e2a);
+    color: var(--text-primary, #ffffff);
+    border: 1px solid var(--tier-low, #263244);
+    padding: 0.5rem;
+
+}
+
+.players-list .player.high-tier {
+    background-color: var(--high-tier-color, #263244);
+    color: var(--text-primary, #ffffff);
+    border: 1px solid var(--tier-high, #263244);
+    padding: 0.5rem;
+
+}
+
+.players-list .player.high-tier:hover {
+    background-color: var(--high-tier-color, #334054);
+    color: var(--text-primary, #ffffff);
+    border: 1px solid var(--tier-high, #323f53);
+    padding: 0.5rem;
+
+}
+
+.players-list .player.low-tier:hover {
+    background-color: var(--low-tier-color, #283445);
+    color: var(--text-primary, #ffffff);
+    border: 1px solid var(--tier-low, #202a3a);
+    padding: 0.5rem;
+
+}
+
+.tier.tier-1 .tier-header {
+    background-color: var(--gold);
+}
+
+.tier.tier-2 .tier-header {
+    background-color: var(--silver);
+}
+
+.tier.tier-3 .tier-header {
+    background-color: var(--bronze);
+}
+
+.players-list .player {
+    border-radius: 0;
+    margin-top: 3px;
+    margin-bottom: 3px;
+
+}
+
+.players-list .player:hover {
+    margin-left: 3px;
+}
